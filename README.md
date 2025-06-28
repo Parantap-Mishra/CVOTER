@@ -1,4 +1,4 @@
-# 📊 CVOTER Survey Data Dashboard
+## 📊 CVOTER Survey Data Dashboard
 
 This is a web-based dashboard created during my internship at **CVOTER**, designed to display, sort, and visualize large-scale survey data using modern web technologies. The project connects an Excel-based dataset to a **Microsoft SQL Server** backend and uses **Flask** to serve dynamic content including tables and interactive charts powered by **Highcharts**.
 
@@ -95,9 +95,19 @@ During this project, I worked with and gained hands-on experience in:
 
 ---
 
+## Screenshots
+![Screenshot 2025-06-28 230909](https://github.com/user-attachments/assets/06ce2f79-7f03-42bc-b768-c6201468c673)
+
+![Screenshot 2025-06-28 230932](https://github.com/user-attachments/assets/61e6fcb0-b37f-4909-831a-ad9bc078cd8f)
+
+![Screenshot 2025-06-28 231012](https://github.com/user-attachments/assets/0ed8fd1c-f1ba-416c-a1f0-23c54d4dfb10)
+
+![Screenshot 2025-06-28 231032](https://github.com/user-attachments/assets/4735a447-f426-48a4-9bbc-edbead31a99a)
+
+---
 
 ## 🧑‍💻 Author
 
 **Parantap Mishra**
 Intern – CVOTER
-[LinkedIn](https://www.linkedin.com/in/parantapmishra) • [GitHub](https://github.com/parantap-mishra)
+[LinkedIn](https://www.linkedin.com/in/parantap-mishra-141770297/) • [GitHub](https://github.com/Parantap-Mishra)
