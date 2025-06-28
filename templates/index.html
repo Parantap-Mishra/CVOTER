@@ -1,0 +1,144 @@
+<!--<html>
+    <head>
+        <title>CVOTER</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <table>
+            <tr>
+                {%for colName in header%}
+                <th>{{colName}}</th>
+                {%endfor%}
+            </tr>
+            {%for row in Data%}
+            <tr>
+                {%for col in header%}
+                <td>{{row[col]}}</td>
+                {%endfor%}
+            </tr>
+            {%endfor%}
+        </table>
+    </body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CVOTER Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+    <h1>CVOTER Data Overview</h1>
+    <div class="dropdown">
+         <button class="dropbtn" onclick="toggleDropdown()">Sort ▼</button>
+        <ul class="dropdown-content" id="dropdownMenu">
+            <li><a href="/">All Data</a></li>
+            <li><a href="/msatisfied">Most Satisfied</a></li>
+            <li><a href="/lsatisfied">Least Satisfied</a></li>
+            <li><a href="/latest">Latest Added</a></li>
+            <li><a href="/oldest">Oldest Added</a></li>
+        </ul>
+    </div>
+</header>
+<!-- Load Highcharts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<!-- Chart Container -->
+<div id="satisfaction-chart" style="height: 400px; margin-bottom: 40px;"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chartData = {{ chart_data | safe }};
+
+        Highcharts.chart('satisfaction-chart', {
+            chart: { type: 'line' },
+            title: { text: 'Satisfaction Trend Over Time' },
+            xAxis: {
+                type: 'datetime',
+                title: { text: 'Date' }
+            },
+            yAxis: {
+                title: { text: 'Percentage (%)' }
+            },
+            tooltip: {
+                shared: true,
+                crosshairs: true,
+                valueSuffix: '%'
+            },
+            series: [
+                {
+                    name: 'Very much satisfied',
+                    data: chartData["Very much satisfied"]
+                },
+                {
+                    name: 'Satisfied to some extent',
+                    data: chartData["Satisfied to some extent"]
+                },
+                {
+                    name: 'Not at all satisfied',
+                    data: chartData["Not at all satisfied"]
+                },
+                {
+                    name: "Don't Know/Can’t say",
+                    data: chartData["Don't Know/Can’t say"]
+                }
+            ]
+        });
+    });
+</script>
+
+
+
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    {% for colName in header %}
+                    <th>{{ colName }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in Data %}
+                <tr>
+                    {% for col in header %}
+                    <td>{{ row[col] }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+    {% if page > 1 %}
+        <a href="{{ url_for(request.endpoint, page=page-1) }}" class="prev">← Previous</a>
+    {% endif %}
+    <span>Page {{ page }}</span>
+    {% if Data|length == 50 %}
+        <a href="{{ url_for(request.endpoint, page=page+1) }}" class="next">Next →</a>
+    {% endif %}
+</div>
+
+
+<script>
+    function toggleDropdown() {
+        let dropdown = document.getElementById("dropdownMenu");
+        dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+    }
+
+    // Hide dropdown when clicking outside
+    document.addEventListener("click", function(event) {
+        let dropdown = document.getElementById("dropdownMenu");
+        let button = document.querySelector(".dropbtn");
+
+        if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+            dropdown.style.display = "none";
+        }
+    });
+</script>
+
+</body>
+</html>
