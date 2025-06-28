@@ -104,6 +104,9 @@ During this project, I worked with and gained hands-on experience in:
 
 ![Screenshot 2025-06-28 231032](https://github.com/user-attachments/assets/4735a447-f426-48a4-9bbc-edbead31a99a)
 
+Sorted by most satisfied
+![image](https://github.com/user-attachments/assets/d6e56f35-1ea6-4905-a113-753d9d7ffb9a)
+
 ---
 
 ## 🧑‍💻 Author
